@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.*;
 import com.example.demo.domain.*;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria,Integer>{
-		
+public interface PagamentoRepository extends JpaRepository<Pagamento,Integer>{
+	
 }

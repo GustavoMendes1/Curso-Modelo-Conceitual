@@ -8,6 +8,4 @@ import com.example.demo.domain.*;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente,Integer>{
 	
-	
-	
 }

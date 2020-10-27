@@ -8,6 +8,4 @@ import com.example.demo.domain.*;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco,Integer>{
 	
-	
-	
 }

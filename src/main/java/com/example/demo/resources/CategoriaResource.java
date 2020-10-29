@@ -32,6 +32,13 @@ public class CategoriaResource {
 		
 	}
 	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<?> getAllCategoria(){
+		
+		List<Categoria> categorias = service.getCategorias();
+		return ResponseEntity.ok().body(categorias);	
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public  ResponseEntity<Void> Insert(@RequestBody Categoria obj){
 		obj = service.insert(obj);

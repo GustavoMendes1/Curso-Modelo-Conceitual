@@ -1,9 +1,13 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Cidade implements Serializable{
@@ -16,7 +20,6 @@ public class Cidade implements Serializable{
 	
 	private String nome;
 	
-	@JsonManagedReference
 	@ManyToOne //mapeando como 1 estado p/ várias cidades 
 	@JoinColumn(name="estado_id")
 	private Estado estado;

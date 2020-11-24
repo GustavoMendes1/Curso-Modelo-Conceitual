@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,9 +49,11 @@ public class CategoriaResource {
 				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);	
 	}
-	
+	@Validated
 	@RequestMapping(method=RequestMethod.POST)
-	public  ResponseEntity<Void> Insert(@RequestBody Categoria categoria){
+	public  ResponseEntity<Void> Insert(@Valid @RequestBody CategoriaDTO categoriaDTO){
+		System.out.println("TESTESTESTESTE");
+		Categoria categoria = service.fromDTO(categoriaDTO);
 		categoria = service.insertCategoria(categoria);
 		
 		URI uri = ServletUriComponentsBuilder
@@ -63,7 +68,8 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id ){
+	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id ){
+		Categoria categoria = service.fromDTO(categoriaDTO);
 		categoria.setId(id);
 		categoria = service.updateCategoria(categoria);
 		return ResponseEntity.noContent().build();
